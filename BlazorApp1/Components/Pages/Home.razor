@@ -1,4 +1,5 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
@@ -6,4 +7,26 @@
 
 Welcome to your new app.
 
-<Counter IncrementAmount="10" />
+
+
+@{
+    var amount = 10+4;
+}
+
+
+<p role="status">Random Num: @randNum</p>
+
+<button class="btn btn-primary" @onclick="SetRandomNum">Click me</button>
+
+@code{
+    public int randNum = 0;
+    private void SetRandomNum()
+    {
+        var rand = new Random();
+        randNum = rand.Next(0,10);
+        amount = randNum;
+    }
+}
+
+<Counter IncrementAmount="amount" /> 
+    using System.Security.Cryptography.X509Certificates;
