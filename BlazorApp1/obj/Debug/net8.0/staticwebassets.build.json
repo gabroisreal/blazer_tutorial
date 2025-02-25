@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "axpb8OmzONFx1ey6ScqNs1clqw7U0xyrlUyDiUJJ2Ws=",
+  "Hash": "KDK+Oc95RNzQWJMBZNLK/w6r67LkdujrUZqeHiQMT8g=",
   "Source": "BlazorApp1",
   "BasePath": "_content/BlazorApp1",
   "Mode": "Default",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "D:\\C# folder\\blazer_tutorial\\BlazorApp1\\wwwroot\\SHRIMP.png",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\C# folder\\blazer_tutorial\\BlazorApp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "SHRIMP.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SHRIMP.png"
     }
   ]
 }

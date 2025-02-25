@@ -21,7 +21,7 @@ Welcome to your new app.
 
 <button class="btn btn-primary" @onclick="SetRandomNum">Click me</button>
 
-<button class="btn btn-primary" @onclick="GetDate">whats todays date?</button>
+<button class="btn btn-primary" @onclick="() => isActive = !isActive ">whats todays date?</button>
 
 <button class="btn btn-primary" @onclick="ShowAlphabet">alphabet</button>
 
@@ -65,6 +65,19 @@ else
 
 </ol>
 }
+<div>
+    <input @onchange="OnChange">
+    <p class="colorChanging" style="background-color: red;" @onmouseover="MouseOver" @onmouseout="MouseOut">@name</p>
+</div>
+
+<div>
+    <p>address</p>
+    <input @oninput="OnInput">
+    <p>@address</p>
+</div>
+
+<p>@thing</p>
+
 
 <table class="table-striped bootstrap table">
             <thead>
@@ -83,6 +96,29 @@ else
         </table>
 
 @code{
+
+    string name = "";
+    string address = "";
+
+    string thing = "";
+
+    private void OnChange(ChangeEventArgs e) =>  name = (string)e.Value!;
+
+    private void OnInput(ChangeEventArgs e) => address = (string)e.Value!;
+
+     string[] colors = new string[5] {"red", "blue" , "green", "yellow", "pink"};
+     
+    private void MouseOver(MouseEventArgs e)
+    {
+        var x = new Random();
+        thing = "over";
+        x.Next(0,colors.Length);
+        
+    }
+    private void MouseOut(MouseEventArgs e) 
+    {
+        thing = "out";
+    }
     public DateTime dateTime { get; set; }
 
     public int[] ints = new int[49];
@@ -106,10 +142,6 @@ else
         
     }
     private bool isActive = false;
-    private void GetDate()
-    {
-        isActive = !isActive;
-    }
 
     private bool isShowing = false;
     private void ShowAlphabet()
