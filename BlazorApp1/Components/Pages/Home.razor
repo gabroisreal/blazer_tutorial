@@ -1,4 +1,5 @@
 ﻿@page "/"
+@page "/{tableCount:int?}"
 @rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
@@ -85,14 +86,16 @@ else
     public DateTime dateTime { get; set; }
 
     public int[] ints = new int[49];
-
+    [Parameter]
+    public int tableCount {get; set;}
+    
     protected override void OnInitialized()
     {
         dateTime = DateTime.Now;
         var rand = new Random();
         for(int i = 0; i < ints.Length; i++)
         {
-            ints[i] = rand.Next(0, 100); 
+            ints[i] = rand.Next(0, tableCount); 
         }
     }
     public int randNum = 0;

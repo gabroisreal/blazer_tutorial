@@ -1,4 +1,5 @@
-﻿@page "/counter"
+﻿@page "/counter/{initialCount:int?}"
+@page "/counter2"
 @rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
@@ -21,8 +22,17 @@
     }
 </ul>
 
+<p>initialCount = @initialCount</p>
 @code {
     private int currentCount = 0;
+
+    protected override void OnInitialized()
+    {
+        currentCount = initialCount;
+    }
+    [Parameter]
+
+    public int initialCount {get; set;}
 
     [Parameter]
     public int IncrementAmount { get; set; } = 1;
