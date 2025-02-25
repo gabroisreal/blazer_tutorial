@@ -14,11 +14,87 @@ Welcome to your new app.
 }
 
 
+
+
 <p role="status">Random Num: @randNum</p>
 
 <button class="btn btn-primary" @onclick="SetRandomNum">Click me</button>
 
+<button class="btn btn-primary" @onclick="GetDate">whats todays date?</button>
+
+<button class="btn btn-primary" @onclick="ShowAlphabet">alphabet</button>
+
+@if(isActive)
+{
+    <p class="date">@dateTime</p>
+}
+else
+{
+    <p class="date">who cares</p>
+}
+@if(isShowing)
+{
+    <ol class="subset">
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+    <li>d</li>
+    <li>e</li>
+    <li>f</li>
+    <li>g</li>
+    <li>h</li>
+    <li>i</li>
+    <li>j</li>
+    <li>k</li>
+    <li>l</li>
+    <li>m</li>
+    <li>n</li>
+    <li>o</li>
+    <li>p</li>
+    <li>q</li>
+    <li>r</li>
+    <li>s</li>
+    <li>t</li>
+    <li>u</li>
+    <li>v</li>
+    <li>w</li>
+    <li>x</li>
+    <li>y</li>
+    <li>z</li>
+
+</ol>
+}
+
+<table class="table-striped bootstrap table">
+            <thead>
+                <tr>
+                    <th>num</th>
+                </tr>
+            </thead>   
+            <tbody>
+                @for(int i = 0; i < ints.Length ; i++)
+                {
+                    <tr>
+                        <td>@ints[i]</td>
+                    </tr>
+                }
+            </tbody> 
+        </table>
+
 @code{
+    public DateTime dateTime { get; set; }
+
+    public int[] ints = new int[49];
+
+    protected override void OnInitialized()
+    {
+        dateTime = DateTime.Now;
+        var rand = new Random();
+        for(int i = 0; i < ints.Length; i++)
+        {
+            ints[i] = rand.Next(0, 100); 
+        }
+    }
     public int randNum = 0;
     private void SetRandomNum()
     {
@@ -26,7 +102,18 @@ Welcome to your new app.
         randNum = rand.Next(0,10);
         
     }
+    private bool isActive = false;
+    private void GetDate()
+    {
+        isActive = !isActive;
+    }
+
+    private bool isShowing = false;
+    private void ShowAlphabet()
+    {
+        isShowing = !isShowing;
+    }
+
 }
 
 <Counter IncrementAmount="amount" /> 
-    using System.Security.Cryptography.X509Certificates;

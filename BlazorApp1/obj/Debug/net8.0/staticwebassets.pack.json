@@ -1,23 +1,23 @@
 {
   "Files": [
     {
-      "Id": "d:\\C# folder\\blazer_tutorial\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "Id": "D:\\C# folder\\blazer_tutorial\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
       "PackagePath": "staticwebassets\\BlazorApp1.bundle.scp.css"
     },
     {
-      "Id": "d:\\C# folder\\blazer_tutorial\\BlazorApp1\\wwwroot\\app.css",
+      "Id": "D:\\C# folder\\blazer_tutorial\\BlazorApp1\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "d:\\C# folder\\blazer_tutorial\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "D:\\C# folder\\blazer_tutorial\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "d:\\C# folder\\blazer_tutorial\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "D:\\C# folder\\blazer_tutorial\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "d:\\C# folder\\blazer_tutorial\\BlazorApp1\\wwwroot\\favicon.png",
+      "Id": "D:\\C# folder\\blazer_tutorial\\BlazorApp1\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
