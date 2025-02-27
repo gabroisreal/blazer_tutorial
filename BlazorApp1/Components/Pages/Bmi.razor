@@ -5,32 +5,33 @@
 
 <h1> find your BMI</h1>
 
-<NumberInput TValue="double" @bind-Value="@weight" Placeholder="weight (pounds)" />
 <div class="form-group">
-    <input type="number" @oninput="OnInputFloat" class="form-control" placeholder="weight (pounds)">
+    <input type="number" @oninput="OnInputFloat" @onmouseleave="CalculateBMI" class="form-control" placeholder="weight (pounds)">
     <p>@weight</p>
 </div>
 
 <div class="form-group">
-    <input type="number" @oninput="OnInputInt" class="form-control" placeholder="height (in)">
+    <input type="number" @oninput="OnInputInt" @onmouseleave="CalculateBMI" class="form-control" placeholder="height (in)">
     <p>@height</p>
 </div>
-<div class="form-group">
-    <input @oninput="OnInputString" class="form-control" placeholder="testing">
-    <p>@text</p>
-</div>
+
+<p>@finalBMI</p>
 
 @code
 {
-    private double weight = 0;
+    private int weight = 0;
 
-    public int height = 0;
+    private int height = 0;
 
-    public string text = "";
+    private double finalBMI = 0;
 
-    private void OnInputFloat(ChangeEventArgs e) => weight = (double)e.Value!;
-    private void OnInputInt(ChangeEventArgs e) => height = (int)e.Value!;
+    private void OnInputFloat(ChangeEventArgs e) => weight = Int32.Parse((string)e.Value!);
+    private void OnInputInt(ChangeEventArgs e) => height = Int32.Parse((string)e.Value!);
 
-    private void OnInputString(ChangeEventArgs e) => text = (string)e.Value!;
+
+    private void CalculateBMI()
+    {
+        finalBMI = weight / Math.Pow(height , 2) * 703;
+    }
 
 }
