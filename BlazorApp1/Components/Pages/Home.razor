@@ -67,8 +67,27 @@ else
 }
 <div>
     <input @onchange="OnChange">
-    <p class="colorChanging" style="background-color: red;" @onmouseover="MouseOver" @onmouseout="MouseOut">@name</p>
+    <p class="colorChanging" @onmouseover="MouseOver" @onmouseout="MouseOut">@name</p>
 </div>
+@if(isMouseOver)
+{
+    <style>
+        .colorChanging
+        {
+            background-color: blue;
+        }
+    </style>
+}
+else
+{
+    <style>
+        .colorChanging
+        {
+            background-color: @colors[currentColor];
+        }
+    </style>
+}
+
 
 <div>
     <p>address</p>
@@ -106,17 +125,23 @@ else
 
     private void OnInput(ChangeEventArgs e) => address = (string)e.Value!;
 
-     string[] colors = new string[5] {"red", "blue" , "green", "yellow", "pink"};
+    public string[] colors = new string[5] {"red", "blue" , "green", "yellow", "pink"};
+
+     public bool isMouseOver = false;
+
+     public int currentColor = 0;
      
     private void MouseOver(MouseEventArgs e)
     {
+        isMouseOver = true;
         var x = new Random();
         thing = "over";
-        x.Next(0,colors.Length);
+        currentColor = x.Next(0,colors.Length); 
         
     }
     private void MouseOut(MouseEventArgs e) 
     {
+        isMouseOver = false;
         thing = "out";
     }
     public DateTime dateTime { get; set; }

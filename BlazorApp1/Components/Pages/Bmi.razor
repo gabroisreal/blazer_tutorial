@@ -1,0 +1,36 @@
+@page "/BMI"
+@rendermode InteractiveServer
+
+<PageTitle>BMI</PageTitle>
+
+<h1> find your BMI</h1>
+
+<NumberInput TValue="double" @bind-Value="@weight" Placeholder="weight (pounds)" />
+<div class="form-group">
+    <input type="number" @oninput="OnInputFloat" class="form-control" placeholder="weight (pounds)">
+    <p>@weight</p>
+</div>
+
+<div class="form-group">
+    <input type="number" @oninput="OnInputInt" class="form-control" placeholder="height (in)">
+    <p>@height</p>
+</div>
+<div class="form-group">
+    <input @oninput="OnInputString" class="form-control" placeholder="testing">
+    <p>@text</p>
+</div>
+
+@code
+{
+    private double weight = 0;
+
+    public int height = 0;
+
+    public string text = "";
+
+    private void OnInputFloat(ChangeEventArgs e) => weight = (double)e.Value!;
+    private void OnInputInt(ChangeEventArgs e) => height = (int)e.Value!;
+
+    private void OnInputString(ChangeEventArgs e) => text = (string)e.Value!;
+
+}
