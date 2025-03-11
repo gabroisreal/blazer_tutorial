@@ -1,0 +1,59 @@
+@page "/Breakfast"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<h1> BREAKFAST </h1>
+
+
+<div class="mt-3">
+    <button  @onclick="PourCoffee">pour yourself some coffeee</button>
+    <p>@coffeeText</p>
+</div>
+
+<div class="mt-3">
+    <button  @onclick="FryEggs">fry some freaking eggs mah dudes</button>
+</div>
+
+<div class="mt-3">
+    <button  @onclick="FryEggsAsync">do it right >:( </button>
+</div>
+<p>@eggStatus</p>
+@code
+{
+    public DateTime dateTime { get; set; }
+
+    protected override void OnInitialized()
+    {
+        dateTime = DateTime.Now;
+    }
+
+    private string coffeeText = "";
+    private void PourCoffee()
+    {
+        dateTime = DateTime.Now;
+        coffeeText = "pouring coffee " + dateTime;
+    }
+
+    private string eggStatus = "";
+    private void FryEggs()
+    {
+        eggStatus = "";
+        eggStatus = "cooking the eggs ...";
+        Task.Delay(3000).Wait();
+        eggStatus = "cooking the eggs ...";
+        Task.Delay(3000).Wait();
+        eggStatus = "Put eggs on plate";
+
+    }
+
+    private async Task FryEggsAsync()
+    {
+        eggStatus = "warming the egg pan ...";
+        await Task.Delay(3000);
+        eggStatus = "cooking the eggs ...";
+        await Task.Delay(3000);
+        eggStatus = "Put eggs on plate";
+
+    }
+
+}
