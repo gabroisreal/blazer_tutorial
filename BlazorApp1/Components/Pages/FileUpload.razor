@@ -33,7 +33,7 @@
     public string ErrorMessage { get; set; } = "";
 
     const int MAX_FILESIZE = 10000 * 1024; // 2 MB
-    ReaderEvent a;
+
 
     public async Task FileUploaded(InputFileChangeEventArgs e)
     {
@@ -45,7 +45,7 @@
             FileType = browserFile.ContentType;
             FileName = browserFile.Name;
             LastModified = browserFile.LastModified;
-            a.readFile(FileName);
+
 
             try
             {
@@ -66,7 +66,7 @@
         }
     }
 
-
+    
 
     class ReaderEvent
     {
