@@ -18,6 +18,7 @@
     <div>Last modified: @LastModified</div>
 </div>
 
+
 @if (!string.IsNullOrEmpty(ErrorMessage))
 {
     <div>Error: @ErrorMessage</div>
@@ -32,6 +33,7 @@
     public string ErrorMessage { get; set; } = "";
 
     const int MAX_FILESIZE = 10000 * 1024; // 2 MB
+    ReaderEvent a;
 
     public async Task FileUploaded(InputFileChangeEventArgs e)
     {
@@ -43,6 +45,7 @@
             FileType = browserFile.ContentType;
             FileName = browserFile.Name;
             LastModified = browserFile.LastModified;
+            a.readFile(FileName);
 
             try
             {
@@ -59,6 +62,50 @@
             catch (Exception exception)
             {
                 ErrorMessage = exception.Message;
+            }
+        }
+    }
+
+
+
+    class ReaderEvent
+    {
+        private string EVENT_TIME_UTC;
+        private string LOCATION;
+        private string READERDESC;
+        private string IDHASH;
+        private string DEVID;
+        private string MACHINE;
+
+        public ReaderEvent(string time, string loc, string desc, string id, string devid, string machine)
+        {
+            EVENT_TIME_UTC = time;
+            LOCATION = loc;
+            READERDESC = desc;
+            IDHASH = id;
+            DEVID = devid;
+            MACHINE = machine;
+
+        }
+
+        public override string ToString()
+        {
+            return $"{EVENT_TIME_UTC} , {LOCATION} , {READERDESC}, {IDHASH}, {DEVID}, {MACHINE}";
+        }
+
+
+        public async Task readFile(string fileName)
+        {
+            StreamReader sr = new StreamReader($"{fileName}.csv");
+
+            List<string> lineList = new List<string>();
+            string line = sr.ReadLine();
+
+            while(line != null)
+            {
+                lineList.Add(line);
+
+                line = sr.ReadLine();
             }
         }
     }
