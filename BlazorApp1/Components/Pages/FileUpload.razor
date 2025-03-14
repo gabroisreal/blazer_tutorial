@@ -77,13 +77,14 @@
                 {
                     lineList.Add(line.Split(","));
                     line = streamReader.ReadLine();
-                }
-                for(int i = 0; i < lineList.Count; i++)
+                    for(int i = 0; i < lineList.Count; i++)
                     {
                         ReaderEvent a = new ReaderEvent(lineList[i][0], lineList[i][1], lineList[i][2], lineList[i][3], lineList[i][4], lineList[i][5]);
                         masterList.Add(a);
                         testingThing = masterList[0].ToString();
                     }
+                }
+                
             }
             catch (Exception exception)
             {
