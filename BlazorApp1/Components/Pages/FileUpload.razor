@@ -21,13 +21,15 @@
 
 <p>@testingThing</p>
 
+<p>@readersThatExist</p>
 
 <ul>
-    @for(int i = 0; i < masterList.Count; i++)
+    @foreach(ReaderEvent a in masterList)
     {
-        <li>@masterList[i]</li>
+        <li>@a.ToString()</li>
     }
 </ul>
+
 
 
 
@@ -47,7 +49,11 @@
     const int MAX_FILESIZE = 10000 * 1024; // 2 MB
     private List<ReaderEvent> masterList = new List<ReaderEvent>();
 
+    private Dictionary<ReaderEvent, string> readerDictionary = new Dictionary<ReaderEvent, string>();
+
     public string testingThing = "";
+
+    public int readersThatExist = 0;
 
     public async Task FileUploaded(InputFileChangeEventArgs e)
     {
@@ -56,10 +62,6 @@
 
         if (browserFile != null)
         {
-            FileSize = browserFile.Size;
-            FileType = browserFile.ContentType;
-            FileName = browserFile.Name;
-            LastModified = browserFile.LastModified;
 
 
             try
@@ -73,18 +75,21 @@
                 StreamReader streamReader = new StreamReader(FileName);
                 List<string[]> lineList = new List<string[]>();
                 string line = streamReader.ReadLine();
+                line = streamReader.ReadLine(); //skips first line
                 while(line != null)
                 {
                     lineList.Add(line.Split(","));
                     line = streamReader.ReadLine();
-                    for(int i = 0; i < lineList.Count; i++)
-                    {
-                        ReaderEvent a = new ReaderEvent(lineList[i][0], lineList[i][1], lineList[i][2], lineList[i][3], lineList[i][4], lineList[i][5]);
-                        masterList.Add(a);
-                        testingThing = masterList[0].ToString();
-                    }
                 }
-                
+                foreach(string[] r in lineList)
+                    {
+                        if(r.Length >= 6)
+                        {
+                            readersThatExist++;    
+                            ReaderEvent a = new ReaderEvent(r[0],r[1],r[2],r[3],r[4],r[5]);
+                            masterList.Add(a);
+                        }
+                    }
             }
             catch (Exception exception)
             {
@@ -102,7 +107,7 @@
         private string READERDESC;
         private string IDHASH;
         private string DEVID;
-        private string MACHINE;
+        public string MACHINE;
 
         public ReaderEvent()
         {
