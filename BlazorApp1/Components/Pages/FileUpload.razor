@@ -24,14 +24,11 @@
 <p>@readersThatExist</p>
 
 <ul>
-    @foreach(ReaderEvent a in masterList)
+    @foreach(KeyValuePair<string , string> kvp in readerDictionary)
     {
-        <li>@a.ToString()</li>
+        <li>@kvp.Key , @kvp.Value</li>
     }
 </ul>
-
-
-
 
 @if (!string.IsNullOrEmpty(ErrorMessage))
 {
@@ -49,7 +46,6 @@
     const int MAX_FILESIZE = 10000 * 1024; // 2 MB
     private List<ReaderEvent> masterList = new List<ReaderEvent>();
 
-    private Dictionary<ReaderEvent, string> readerDictionary = new Dictionary<ReaderEvent, string>();
 
     public string testingThing = "";
 
@@ -62,7 +58,11 @@
 
         if (browserFile != null)
         {
-
+            
+            FileSize = browserFile.Size;
+            FileType = browserFile.ContentType;
+            FileName = browserFile.Name;
+            LastModified = browserFile.LastModified;
 
             try
             {
@@ -90,6 +90,10 @@
                             masterList.Add(a);
                         }
                     }
+                foreach(ReaderEvent _reader in masterList)
+                {
+                    CreateDictionary(_reader);
+                }
             }
             catch (Exception exception)
             {
@@ -98,7 +102,18 @@
         }
     }
 
-    
+    private Dictionary<string, string> readerDictionary = new Dictionary<string, string>();
+    private void CreateDictionary(ReaderEvent r)
+    {
+        try
+        {
+            readerDictionary.Add(r.DEVID, r.MACHINE);
+        }
+        catch
+        {
+            Console.WriteLine("already exits");
+        }
+    }
 
     class ReaderEvent
     {
@@ -106,7 +121,7 @@
         private string LOCATION;
         private string READERDESC;
         private string IDHASH;
-        private string DEVID;
+        public string DEVID;
         public string MACHINE;
 
         public ReaderEvent()
