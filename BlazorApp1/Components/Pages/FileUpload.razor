@@ -122,6 +122,7 @@
         try
         {
             readerDictionary.Add(r.DEVID + r.MACHINE, runs);
+            readerDictionary[r.DEVID+r.MACHINE].Add(r);
         }
         catch
         {
