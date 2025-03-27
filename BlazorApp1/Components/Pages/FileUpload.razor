@@ -23,12 +23,24 @@
 
 <p>@readersThatExist</p>
 
-<ul>
-    @foreach(KeyValuePair<string , string> kvp in readerDictionary)
-    {
-        <li>@kvp.Key , @kvp.Value</li>
-    }
-</ul>
+
+<table class="table">
+    <thead>
+            <tr>
+                <th>Key</th>
+                <th>calls</th>
+            </tr>
+    </thead>
+    <tbody>
+        @foreach(KeyValuePair<string ,  List<ReaderEvent>> kvp in readerDictionary)
+        {
+            <tr>
+                <td>@kvp.Key</td>
+                <td>@kvp.Value.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 @if (!string.IsNullOrEmpty(ErrorMessage))
 {
@@ -102,16 +114,19 @@
         }
     }
 
-    private Dictionary<string, string> readerDictionary = new Dictionary<string, string>();
+    private Dictionary<string,  List<ReaderEvent>> readerDictionary = new Dictionary<string, List<ReaderEvent> >();
+
     private void CreateDictionary(ReaderEvent r)
     {
+        List<ReaderEvent> runs = new List<ReaderEvent>();
         try
         {
-            readerDictionary.Add(r.DEVID, r.MACHINE);
+            readerDictionary.Add(r.DEVID + r.MACHINE, runs);
         }
         catch
         {
             Console.WriteLine("already exits");
+            readerDictionary[r.DEVID+r.MACHINE].Add(r);
         }
     }
 
